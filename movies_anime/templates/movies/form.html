@@ -1,0 +1,16 @@
+{% extends "movies/base.html" %}
+
+{% block content %}
+<div class="card form-card">
+    <h1>{{ heading }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-buttons">
+            <button class="btn" type="submit">Сохранить</button>
+            <a class="btn btn-gray" href="/">Назад</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

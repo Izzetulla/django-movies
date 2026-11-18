@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои фильмы</title>
+    <link rel="stylesheet" href="{% static 'movies/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="wrap">
+            <a class="logo" href="/">🎬 Мои фильмы</a>
+            <nav>
+                <a href="/">Главная</a>
+                <a href="/create/">+ Добавить</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="wrap">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+</body>
+</html>
