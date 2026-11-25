@@ -1,0 +1,57 @@
+{% extends "movies/base.html" %}
+
+{% block content %}
+<div class="top">
+    <h1>Мои фильмы и аниме</h1>
+    <a class="btn" href="/create/">+ Добавить</a>
+</div>
+
+
+
+<form class="card search" method="get">
+    <input type="text" name="q" placeholder="Название" value="{{ request.GET.q }}">
+
+    <select name="genre">
+        <option value="">Любой жанр</option>
+        {% for g in genres %}
+        <option value="{{ g.id }}" {% if request.GET.genre == g.id|stringformat:"s" %}selected{% endif %}>{{ g.name }}</option>
+        {% endfor %}
+    </select>
+
+    <select name="status">
+        <option value="">Любой статус</option>
+        {% for s in statuses %}
+        <option value="{{ s }}" {% if request.GET.status == s %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+    </select>
+
+    
+
+
+    <button class="btn" type="submit">Найти</button>
+    <a class="btn btn-gray" href="/">Сбросить</a>
+</form>
+
+{% if titles %}
+<div class="grid">
+    {% for t in titles %}
+    <div class="card item">
+        {% if t.rating %}<span class="rating">★ {{ t.rating }}</span>{% endif %}
+        <h3><a href="/title/{{ t.id }}/">{{ t.name }}</a></h3>
+        <div class="genre">{{ t.genre }}</div>
+        <span class="badge {% if t.status == 'Хочу посмотреть' %}want{% elif t.status == 'Смотрю' %}watching{% else %}done{% endif %}">{{ t.status }}</span>
+        <div class="item-actions">
+            <a href="/title/{{ t.id }}/">Открыть</a>
+            <a href="/edit/{{ t.id }}/">Изменить</a>
+            <a class="del" href="/delete/{{ t.id }}/" onclick="return confirm('Удалить?')">Удалить</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card empty">
+    <p>Ничего не найдено.</p>
+    <a class="btn" href="/create/">Добавить фильм</a>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "movies/base.html" %}
+
+{% block content %}
+<div class="card form-card">
+    <h1>{{ title.name }}</h1>
+    <span class="badge {% if title.status == 'Хочу посмотреть' %}want{% elif title.status == 'Смотрю' %}watching{% else %}done{% endif %}">{{ title.status }}</span>
+
+    <p class="detail-row"><b>Жанр:</b> {{ title.genre }}</p>
+    <p class="detail-row"><b>Оценка:</b> {% if title.rating %}★ {{ title.rating }} из 10{% else %}не поставлена{% endif %}</p>
+
+    <div class="form-buttons">
+        <a class="btn" href="/edit/{{ title.id }}/">Изменить</a>
+        <a class="btn btn-red" href="/delete/{{ title.id }}/" onclick="return confirm('Удалить?')">Удалить</a>
+        <a class="btn btn-gray" href="/">Назад</a>
+    </div>
+</div>
+{% endblock %}

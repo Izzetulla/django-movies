@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои фильмы</title>
+    <link rel="stylesheet" href="{% static 'movies/style.css' %}">
+    <style>
+    .stats { color: #777; margin: 0 0 14px; }
+
+    .search {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 22px;
+    }
+    .search input, .search select {
+        flex: 1 1 150px;
+        width: auto;
+        padding: 9px;
+        border: 1px solid #ccd0e0;
+        border-radius: 8px;
+        font-size: 15px;
+        font-family: inherit;
+    }
+
+    .item h3 a { color: #222; text-decoration: none; }
+    .item h3 a:hover { color: #5b3fd9; }
+
+    .detail-row { margin: 14px 0; font-size: 16px; }
+    .btn-red { background: #e04848; }
+    .btn-red:hover { background: #c23a3a; }
+</style>
+</head>
+<body>
+    <header>
+        <div class="wrap">
+            <a class="logo" href="/">🎬 Мои фильмы</a>
+           <nav>
+    <a href="/">Главная</a>
+    <a href="/create/">+ Добавить</a>
+    
+</nav>
+        </div>
+    </header>
+    <main>
+        <div class="wrap">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+</body>
+</html>
