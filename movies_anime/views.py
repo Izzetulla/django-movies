@@ -6,7 +6,6 @@ from .forms import TitleForm
 def index(request):
     titles = Title.objects.order_by("-id")     
 
-    # что пользователь ввёл в поиске
     name = request.GET.get("q")
     genre = request.GET.get("genre")
     status = request.GET.get("status")
@@ -41,7 +40,6 @@ def create(request):
     return render(request, "movies/form.html", {"form": form, "heading": "Добавить"})
 
 
-# Изменить фильм
 def edit(request, id):
     title = get_object_or_404(Title, id=id)
     if request.method == "POST":
@@ -54,7 +52,6 @@ def edit(request, id):
     return render(request, "movies/form.html", {"form": form, "heading": "Изменить"})
 
 
-# Удалить фильм
 def delete(request, id):
     get_object_or_404(Title, id=id).delete()
     return redirect("/")
